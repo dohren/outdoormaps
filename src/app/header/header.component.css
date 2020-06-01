@@ -1,0 +1,17 @@
+.header {
+    height: 28px;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #0000FF;
+    padding: 3px 10px;
+  }
+  
+  .header label {
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+  }

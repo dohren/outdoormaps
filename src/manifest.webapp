@@ -1,0 +1,29 @@
+{
+  "version": "1.0.1",
+  "name": "Outdoor Maps",
+  "description": "Outdoor Maps",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/assets/icons/worldmap_56.png",
+    "112": "/assets/icons/worldmap_112.png"
+  },
+  "developer": {
+    "name": "adohren",
+    "url": "http://www.dohren.eu"
+  },
+  "permissions": {
+    "geolocation": {
+      "description": "Required to share geolocation"
+    }
+  },
+  "locales": {
+    "de-DE": {
+      "name": "Outdoor Maps",
+      "subtitle": "Kezado Maps",
+      "description": "Die Karte"
+    }
+  },
+  "default_locale": "de-DE"
+}
+
