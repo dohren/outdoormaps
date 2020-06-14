@@ -6,7 +6,10 @@
 
 ## Status
 - GPX based maps are fixed and yet cannot be downloaded dynamically. 
-- Navigation works, when started the position will be automatically updated. 
+- Navigation works, when started, the position will be updated automatically. 
+
+## Next Steps
+- Tracking and export
 
 ## Contact
 For further information please contact me. 
