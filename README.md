@@ -1,8 +1,8 @@
 # Outdoormaps
 
 ## Description
-- Angular + KaiOS + Openstreetmap + OpenLayers Example. 
-- This Software is still a prototype for development.
+- KaiOS + Angular + Openstreetmap + Openlayers.js  
+- This Software is still a prototype in development.
 
 ## Status
 - GPX based maps are fixed and yet cannot be downloaded dynamically. 
