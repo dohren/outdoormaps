@@ -2,19 +2,13 @@ import { Component, HostListener } from '@angular/core';
 import Map from 'ol/Map';
 import View from 'ol/View';
 import VectorLayer from 'ol/layer/Vector';
-import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import Feature from 'ol/Feature';
 import { Softkey } from '../softkey/softkey.component';
-import Interaction from 'ol/interaction';
-import Overlay from 'ol/overlay';
-import Proj from 'ol/proj';
-import XYZ from 'ol/source/xyz';
 import VectorSource from 'ol/source/Vector';
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
-import { Fixed } from 'ol/loadingstrategy';
 import GPX from 'ol/format/GPX';
 import NoSleep from '../../assets/js/NoSleep';
 
@@ -43,15 +37,16 @@ export class MapComponent {
   // layer: TileLayer;
   view: View;
   pos: Geolocation;
+  trackFeature: Feature;
   // olOverlay: Overlay;
   // olFeature: Feature;
  
   ngOnInit() {
     this.createMap();
+    // this.track();
+    this.tracking();
     this.showPosition(); 
-    this.track();
   }
-
 
   private get(url, callback) {
     var client = new XMLHttpRequest();
@@ -60,6 +55,30 @@ export class MapComponent {
       callback(client.responseText);
     };
     client.send();
+  }
+
+  private tracking() {
+    
+    var trackStyle = new Style({
+      stroke: new Stroke({
+        color: 'rgba(0,0,255,1.0)',
+        width: 3,
+        lineCap: 'round'
+      })
+    });
+    
+    // use a single feature with a linestring geometry to display our track
+    this.trackFeature = new Feature({
+      geometry: new ol.geom.LineString([])
+    });
+    // we'll need a vector layer to render it
+    var trackLayer = new VectorLayer({
+      source: new VectorSource({
+        features: [this.trackFeature]
+      }),
+      style: trackStyle
+    });
+    this.map.addLayer(trackLayer);
   }
 
 
@@ -190,6 +209,7 @@ export class MapComponent {
     if (this.navigate) {
       this.view.setCenter(this.pos);
       this.view.setZoom(16);
+      this.trackFeature.getGeometry().appendCoordinate(this.pos);
     } 
   }
 
@@ -209,7 +229,6 @@ export class MapComponent {
       this.navigate = false;
       this.noSleep.disable();  
     }
-
   }
 
   error() {
